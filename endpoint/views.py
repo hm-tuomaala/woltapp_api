@@ -7,6 +7,9 @@ def api_req(request):
     # Only allow GET requests
     if request.method == 'GET':
 
+        for inv_hash in parse.INVALID_HASHES:
+            print(inv_hash['blurhash'], inv_hash['name'])
+
         # If no restaurants meet criteria, empty json object is returned
         ret = {'restaurants': []}
 
@@ -26,7 +29,8 @@ def api_req(request):
         matched = []
 
         # Search for q in the name, tags and description
-        # Full and partial matches are accepted and search terms are decapitalized
+        # search terms and targets are decapitalized to get better results
+        # Full and partial matches are accepted
         for location in restaurants['restaurants']:
             if (queary in location['name'].lower() or
                     queary in [tag.lower() for tag in location['tags']] or

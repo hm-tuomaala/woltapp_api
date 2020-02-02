@@ -3,9 +3,9 @@ import requests
 import blurhash
 
 
-def calculate_blurhash(url):
+def calculate_blurhash(url, components):
     image_response = requests.get(url, stream=True)
-    hash = blurhash.encode(image_response.raw, x_components=3, y_components=3)
+    hash = blurhash.encode(image_response.raw, x_components=components, y_components=components)
     return hash
 
 def blurhashes_are_equal(calculated, marked_value):
@@ -14,10 +14,16 @@ def blurhashes_are_equal(calculated, marked_value):
 def validate_blurhashes(data):
     ret = []
     for item in data['restaurants']:
-        calculated = calculate_blurhash(item['image'])
+        calculated = calculate_blurhash(item['image'], 3)
         marked_value = item['blurhash']
+
+        # Compare calculated blurhashs to the marked values first with
+        # x and y componont values of 3 and if they don't match then component
+        # values of 4
         if not blurhashes_are_equal(calculated, marked_value):
-            ret.append(item)
+            calculated = calculate_blurhash(item['image'], 4)
+            if not blurhashes_are_equal(calculated, marked_value):
+                ret.append(item)
     return ret
 
 
@@ -27,6 +33,7 @@ def validate_blurhashes(data):
 DATA = {}
 INVALID_HASHES = []
 
+# Load json data from restaurants.json
 with open('static/restaurants.json') as restaurants:
     DATA = json.load(restaurants)
 
