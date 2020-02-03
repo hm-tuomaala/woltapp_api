@@ -39,4 +39,4 @@ with open('static/restaurants.json') as restaurants:
 
 # Validating blurhash values
 # NOTE: Calculating blurhashes is quite expensive
-INVALID_HASHES = validate_blurhashes(DATA)
+# INVALID_HASHES = validate_blurhashes(DATA)
