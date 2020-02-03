@@ -1,1 +1,1 @@
-web: gunicorn woltapp_api/wsgi.py
+web: gunicorn woltapp_api.wsgi
