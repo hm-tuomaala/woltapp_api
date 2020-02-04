@@ -131,8 +131,8 @@ class TestAPI(TestCase):
 
     def test_invalid_http_method_post_response(self):
         try:
-            req = requests.get('http://localhost:8000/restaurants/search?q=Momotoko&lat=60.169934599421396&lon=24.941786527633663')
+            req = requests.post('http://localhost:8000/restaurants/search?q=test&lat=60.1699&lon=24.9417')
         except requests.exceptions.ConnectionError:
             self.skipTest('Development server is not on')
 
-        self.assertEqual(req.staus_code, 403)
+        self.assertEqual(req.status_code, 403)
