@@ -6,7 +6,7 @@ Django in order to retain scalability if needed
 * Python3
 
 ## Run Django development server
-_Usage of python's virtualenvironment is advised_  
+_Use of virtualenv is advised_  
 In order to run Django development server first run:  
 `pip3 install -r requirements.txt`  
 Then run:  
@@ -25,6 +25,6 @@ For example:
 `?q=pizza&lat=60.17045&lon=24.93147`
 
 ## Tests
-In order to run all tests make sure the development server is on.  
+In order to run all tests make sure the development server is running.  
 Then run:  
 `./manage.py test`
