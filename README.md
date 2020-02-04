@@ -17,7 +17,7 @@ https://woltapp-exercise.herokuapp.com/restaurants/search
 
 ## API
 To search from API endpoint append  
-`?q=<search_term>&lat=<latitude_coordinate>&lon=<longitude_coordinate>`  
+`?q={search_term}&lat={latitude_coordinate}&lon={longitude_coordinate}`  
 at the end of the url.  
 Response will be a json object with restaurants matching your search.  
 For example:  
