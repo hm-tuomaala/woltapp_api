@@ -127,3 +127,12 @@ class TestAPI(TestCase):
         }
 
         self.assertEqual(right_response, dict(req.json()))
+
+
+    def test_invalid_http_method_post_response(self):
+        try:
+            req = requests.get('http://localhost:8000/restaurants/search?q=Momotoko&lat=60.169934599421396&lon=24.941786527633663')
+        except requests.exceptions.ConnectionError:
+            self.skipTest('Development server is not on')
+
+        self.assertEqual(req.staus_code, 403)
