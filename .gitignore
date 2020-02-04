@@ -2,3 +2,4 @@ woltapp_api/__pycache__
 endpoint/__pycache__
 static/__pycache__
 endpoint/migrations/__pycache__
+db.sqlite3
