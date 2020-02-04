@@ -96,3 +96,34 @@ class TestAPI(TestCase):
         }
 
         self.assertEqual(right_response, dict(req.json()))
+
+    def test_query_string_with_one_result(self):
+        try:
+            req = requests.get('http://localhost:8000/restaurants/search?q=Momotoko&lat=60.169934599421396&lon=24.941786527633663')
+        except requests.exceptions.ConnectionError:
+            self.skipTest('Development server is not on')
+
+        right_response = {
+            'restaurants': [
+                {
+                    'blurhash': 'U8INy*D+KjIW%3pZ$yx[5T0Lv|_1.3m,0z9h',
+                    'city': 'Helsinki',
+                    'currency': 'EUR',
+                    'delivery_price': 390,
+                    'description': 'Japanilaista ramenia parhaimmillaan',
+                    'image': 'https://prod-wolt-venue-images-cdn.wolt.com/5d108aa82e757db3f4946ca9/d88ebd36611a5e56bfc6a60264fe3f81',
+                    'location':[
+                        24.941786527633663,
+                        60.169934599421396
+                    ],
+                    'name': 'Momotoko Citycenter',
+                    'online': False,
+                    'tags': [
+                        'ramen',
+                        'risotto'
+                    ]
+                }
+            ]
+        }
+
+        self.assertEqual(right_response, dict(req.json()))
