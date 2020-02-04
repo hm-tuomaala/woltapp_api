@@ -46,9 +46,9 @@ class TestJsonData(TestCase):
 
         for item in data['restaurants']:
             self.assertTrue(len(item['blurhash']) % 2 == 0)
-            
 
-    def test_blurhashes_x_and_y_components_4(self):
+
+    def test_blurhashes_values(self):
         try:
             data = parse.DATA
         except AttributeError:
@@ -58,3 +58,41 @@ class TestJsonData(TestCase):
             img = requests.get(item['image'], stream=True)
             hash = blurhash.encode(img.raw, x_components=4, y_components=4)
             self.assertEqual(item['blurhash'], hash)
+
+class TestAPI(TestCase):
+
+    def test_query_string_lenght_0_response(self):
+        try:
+            req = requests.get('http://localhost:8000/restaurants/search?q=&lat=60.17045&lon=24.93147')
+        except requests.exceptions.ConnectionError:
+            self.skipTest('Development server is not on')
+
+        self.assertEqual(req.status_code, 400)
+
+    def test_no_lat_value_response(self):
+        try:
+            req = requests.get('http://localhost:8000/restaurants/search?q=test&lat=&lon=24.93147')
+        except requests.exceptions.ConnectionError:
+            self.skipTest('Development server is not on')
+
+        self.assertEqual(req.status_code, 400)
+
+    def test_no_lon_value_response(self):
+        try:
+            req = requests.get('http://localhost:8000/restaurants/search?q=test&lat=60.17045&lon=')
+        except requests.exceptions.ConnectionError:
+            self.skipTest('Development server is not on')
+
+        self.assertEqual(req.status_code, 400)
+
+    def test_query_string_with_no_results(self):
+        try:
+            req = requests.get('http://localhost:8000/restaurants/search?q=test&lat=60.17045&lon=24.93147')
+        except requests.exceptions.ConnectionError:
+            self.skipTest('Development server is not on')
+
+        right_response = {
+            'restaurants': []
+        }
+
+        self.assertEqual(right_response, dict(req.json()))

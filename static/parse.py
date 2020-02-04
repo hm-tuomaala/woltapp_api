@@ -17,13 +17,8 @@ def validate_blurhashes(data):
         marked_value = item['blurhash']
 
         # Compare calculated blurhashs to the marked values first with
-        # x and y componont values of 3 and if they don't match then component
-        # values of 4
-
-        if len(marked_value == 22):
-            calculated = calculate_blurhash(item['image'], 3)
-        else:
-            calculated = calculate_blurhash(item['image'], 4)
+        # x and y componont values of 4 because lenght of hashes are 36
+        calculated = calculate_blurhash(item['image'], 4)
 
         if not blurhashes_are_equal(calculated, marked_value):
             ret.append(item)
