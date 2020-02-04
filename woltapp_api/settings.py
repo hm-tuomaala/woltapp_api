@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'c#_aji!*wpy!z$vb-!!dp)d0-)dko0ctq5j=^047)4$ex7lx0d'
+SECRET_KEY = 'THIS_SHOULD_BE_SECRET'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -71,8 +71,8 @@ WSGI_APPLICATION = 'woltapp_api.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# Database is only added in order to run test
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
