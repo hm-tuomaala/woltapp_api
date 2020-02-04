@@ -6,7 +6,7 @@ Django in order to retain scalability if needed
 * Python3
 
 ## Run Django development server
-_Usage of python's virtualenvironment is advised_
+_Usage of python's virtualenvironment is advised_  
 In order to run Django development server first run:  
 `pip3 install -r requirements.txt`  
 Then run:  
