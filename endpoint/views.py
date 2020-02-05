@@ -7,9 +7,6 @@ def api_req(request):
     # Only allow GET requests
     if request.method == 'GET':
 
-        for inv_hash in parse.INVALID_HASHES:
-            print(inv_hash['blurhash'], inv_hash['name'])
-
         # If no restaurants meet criteria, empty json object is returned
         ret = {'restaurants': []}
 
