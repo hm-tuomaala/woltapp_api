@@ -65,7 +65,7 @@ class TestAPI(TestCase):
         try:
             req = requests.get('http://localhost:8000/restaurants/search?q=&lat=60.17045&lon=24.93147')
         except requests.exceptions.ConnectionError:
-            self.skipTest('Development server is not on')
+            self.skipTest('Development server is not running in localhost')
 
         self.assertEqual(req.status_code, 400)
 
@@ -73,7 +73,7 @@ class TestAPI(TestCase):
         try:
             req = requests.get('http://localhost:8000/restaurants/search?q=test&lat=&lon=24.93147')
         except requests.exceptions.ConnectionError:
-            self.skipTest('Development server is not on')
+            self.skipTest('Development server is not running in localhost')
 
         self.assertEqual(req.status_code, 400)
 
@@ -81,7 +81,7 @@ class TestAPI(TestCase):
         try:
             req = requests.get('http://localhost:8000/restaurants/search?q=test&lat=60.17045&lon=')
         except requests.exceptions.ConnectionError:
-            self.skipTest('Development server is not on')
+            self.skipTest('Development server is not running in localhost')
 
         self.assertEqual(req.status_code, 400)
 
@@ -89,7 +89,7 @@ class TestAPI(TestCase):
         try:
             req = requests.get('http://localhost:8000/restaurants/search?q=test&lat=60.17045&lon=24.93147')
         except requests.exceptions.ConnectionError:
-            self.skipTest('Development server is not on')
+            self.skipTest('Development server is not running in localhost')
 
         right_response = {
             'restaurants': []
@@ -101,7 +101,7 @@ class TestAPI(TestCase):
         try:
             req = requests.get('http://localhost:8000/restaurants/search?q=Momotoko&lat=60.169934599421396&lon=24.941786527633663')
         except requests.exceptions.ConnectionError:
-            self.skipTest('Development server is not on')
+            self.skipTest('Development server is not running in localhost')
 
         right_response = {
             'restaurants': [
@@ -133,6 +133,6 @@ class TestAPI(TestCase):
         try:
             req = requests.post('http://localhost:8000/restaurants/search?q=test&lat=60.1699&lon=24.9417')
         except requests.exceptions.ConnectionError:
-            self.skipTest('Development server is not on')
+            self.skipTest('Development server is not running in localhost')
 
         self.assertEqual(req.status_code, 403)

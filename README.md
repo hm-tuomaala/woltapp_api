@@ -25,6 +25,6 @@ For example:
 `?q=pizza&lat=60.17045&lon=24.93147`
 
 ## Tests
-In order to run all tests make sure the development server is running.  
+In order to run all tests make sure the development server is running at localhost:8000.  
 Then run:  
 `./manage.py test`
