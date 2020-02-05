@@ -13,7 +13,7 @@ Then run:
 `python3 manage.py runserver`
 
 ## Live demo
-Live demo of my solution can be found in  
+Live demo of my solution can be found at  
 https://woltapp-exercise.herokuapp.com/restaurants/search  
 
 ## API

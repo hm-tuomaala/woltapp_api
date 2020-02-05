@@ -37,8 +37,7 @@ def api_req(request):
                     queary in location['description'].lower()):
                 matched.append(location)
 
-        #  Distance is calculated only for restaurants with q because it is more
-        # expencive operation
+        #  Distance is calculated only for the restaurants that match q
         for item in matched:
             dist = geopy.distance.vincenty(
                 (item['location'][1], item['location'][0]),
@@ -47,7 +46,7 @@ def api_req(request):
             if dist < 3:
                 ret['restaurants'].append(item)
 
-        # Found restaurants are returned in json object
+        # Found restaurants are returned in a json object
         return JsonResponse(ret, json_dumps_params={'indent': 2})
     else:
 
